@@ -27,7 +27,7 @@ if (isDevelopment) {
 }
 
 app.get('/', (req, res) => {
-  res.render('index', { title: 'Mega git', message: 'The Modern Digital IT Product' });
+  res.render('index', { mainTitle: 'Mega git', pageTitle: 'The Modern Digital IT Product' });
 });
 
 const server = app.listen(app.get('port'), () => {
