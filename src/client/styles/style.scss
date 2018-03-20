@@ -10,6 +10,32 @@ body {
 body {
   min-width: 320px;
   font-size: 16px;
+  line-height: 1.65;
   font-family: "Apple", sans-serif;
   background-color: #fff;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 24px;
+  color: #333;
+}
+
+.title.--center {
+  text-align: center;
 }
