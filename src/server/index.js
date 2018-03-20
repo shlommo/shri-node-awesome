@@ -7,10 +7,13 @@ const app = express();
 
 app.set('port', 4000);
 
-app.use(express.static(path.join(__dirname, 'static')));
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+
+app.use(express.static(path.join(__dirname, '../../dist')));
 
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.render('index', { title: 'Mega git', message: 'Hello there!' });
 });
 
 const server = app.listen(app.get('port'), () => {
