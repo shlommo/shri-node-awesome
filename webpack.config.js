@@ -1,6 +1,7 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, argv) => ({
   entry: [
@@ -48,6 +49,14 @@ module.exports = (env, argv) => ({
     new ExtractTextPlugin({
       filename: './css/style.min.css',
       allChunks: true
-    })
+    }),
+    new CopyWebpackPlugin([{
+      from: './static/fonts',
+      to: './fonts'
+    },
+    {
+      from: './static/img',
+      to: './img'
+    }])
   ]
 });
