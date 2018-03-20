@@ -9,7 +9,8 @@ module.exports = (env, argv) => ({
     './src/client/styles/style.scss'
   ],
   output: {
-    filename: './js/bundle.js'
+    filename: './js/bundle.js',
+    publicPath: '/'
   },
   devtool: argv.mode !== 'production' ? 'source-map' : '',
   module: {

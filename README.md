@@ -6,17 +6,21 @@
 npm i
 ```
 
-## Отслеживание изменений
+## Запуск сервера в Dev режиме
+```
+npm run server:dev
+```
+## Запуск сервера в Production режиме
+```
+npm run server:prod
+```
+
+### Dev-сборка(слежение за изменением проекта)
 ```
 npm run watch
 ```
 
-## Сборка проекта
+### Production-сборка
 ```
 npm run build
-```
-
-## Запуск сервера
-```
-npm run server
 ```
