@@ -8,6 +8,8 @@ npm i
 
 ## Запуск сервера в Dev режиме
 ```
+npm start
+
 npm run server:dev
 ```
 ## Запуск сервера в Production режиме

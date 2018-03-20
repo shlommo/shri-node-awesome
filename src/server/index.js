@@ -10,7 +10,7 @@ const configFunc = require('./../../webpack.config.js');
 const app = express();
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-app.set('port', 4000);
+app.set('port', 8080);
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));

@@ -2,12 +2,16 @@ FROM node:slim
 
 WORKDIR /usr/src/app
 
-COPY . .
+COPY package*.json ./
 
-ENV PORT=80
+ENV PORT=8080
 ENV NODE_ENV=development
 
 RUN npm install
+
+COPY . .
+
 RUN npm run build
 
+EXPOSE 8080
 CMD npm start -- --port $PORT
