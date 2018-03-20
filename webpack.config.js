@@ -1,4 +1,5 @@
 const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = (env, argv) => ({
   entry: [
@@ -21,5 +22,6 @@ module.exports = (env, argv) => ({
     }]
   },
   plugins: [
+    new CleanWebpackPlugin(['dist'])
   ]
 });
