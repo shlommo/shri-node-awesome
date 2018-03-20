@@ -1,9 +1,11 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = (env, argv) => ({
   entry: [
-    './src/client/js/index.js'
+    './src/client/js/index.js',
+    './src/client/styles/style.scss'
   ],
   output: {
     filename: './js/bundle.js'
@@ -19,9 +21,33 @@ module.exports = (env, argv) => ({
           presets: 'env'
         }
       }
+    },
+    {
+      test: /\.(sass|scss)$/,
+      include: path.resolve(__dirname, 'src/client/styles'),
+      use: ExtractTextPlugin.extract({
+        use: [{
+          loader: 'css-loader',
+          options: {
+            sourceMap: true,
+            minimize: true,
+            url: false
+          }
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true
+          }
+        }]
+      })
     }]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist'])
+    new CleanWebpackPlugin(['dist']),
+    new ExtractTextPlugin({
+      filename: './css/style.min.css',
+      allChunks: true
+    })
   ]
 });
