@@ -8,7 +8,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const configFunc = require('./../../webpack.config.js');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 app.set('port', PORT);
