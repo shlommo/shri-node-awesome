@@ -1,3 +1,12 @@
 extends layout.pug
 
 block content
+    div(class="app container")
+      setion(class="app__container")
+        h1(class="title --center app__title")= pageTitle
+        header(class="app__header")
+          div(class="app__trees")
+            p список веток
+        div(class="app__content")
+          div(class="app__column --commits")
+          div(class="app__column --files")
