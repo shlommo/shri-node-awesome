@@ -8,9 +8,10 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const configFunc = require('./../../webpack.config.js');
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-app.set('port', 8080);
+app.set('port', PORT);
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
