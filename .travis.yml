@@ -7,31 +7,30 @@ script:
 - npm run lint
 - npm run test
 - npm run build
+
 aliases:
-  deploy:
+  deploy: &deploy
     provider: heroku
-    api_key: &1
+    api_key:
       secure: U3JOlP4fdop98Fj9U5VBH1Cuf38r0UtoHYk7WVCaE4kduOtLnoeY04KPX5uwMKnfJXYKzbJfXDAwSBDLjfxWPN1o3UjsNXPIT7tpAl/SbsSB89dhxdwC6fPSZbyhq8tlMLwATSzfu9qCLpgE6E/QBe68fnVogwVHhU4FmFTUikP/x4sWQ4a0NfkzkxAIj8lr0NvmDdk7zbk9c+bBN4+J82dxzSUs7P8HCfLDK7Zimn6eRHYwuPpraBT+YP/gNK8RusozS0I/269ZKxCXfJf9b6NbZVLq6r5RUP3iI1h1LMTHcZDcanqamXm4XBCVvshfnyWRwVZqRfLesO7jVDpIyMUe39zOiKmLO5NSv99SuDDpvU+7VxI/YCIUlEtJIr6PWdcNhIu4nzWNQhPaQVm4A+EMF5g8LWLb34HBwgGnwoO54qJj7fMcZn9MtjwGmb5dOYc8xysdIA+lHYOgqNaCzaLosyJYaR+Cpr9dTqoKDNd0wcI+nY3oAadHybIWO8aZnNGDoVT3nruxbyZpZFC36RtUd0UeW7PRpyUL/b8fsBt5AvgASeDHYymxQwHQHuHcIcjIE4nBwx6cHZRCZNzsCWJgvPDiLKcJZeEPcCu2MqNBLXFXAd5sYoxX+anIUOAFCsrDmvjbKZjYrZBKKeSsepWpbIM3utAte4MNObrjlt0=
     skip_cleanup: true
+
 jobs:
   include:
-  - stage: Deploy (development)
-    if: tag IS blank
-    script:
-    - npm run build
-    deploy:
-      provider: heroku
-      api_key: *1
-      skip_cleanup: true
-      app: shri-node-awesome-master
-  - stage: Deploy (production)
-    if: tag IS present
-    script:
-    - npm run build
-    deploy:
-      provider: heroku
-      api_key: *1
-      skip_cleanup: true
-      app: shri-node-awesome-production
-      on:
-        tags: true
+    - stage: Deploy (development)
+      if: tag IS blank
+      script:
+        - npm run build
+      deploy:
+        <<: *deploy
+        app: shri-node-awesome-master
+
+    - stage: Deploy (production)
+      if: tag IS present
+      script:
+        - npm run build
+      deploy:
+        <<: *deploy
+        app: shri-node-awesome-production
+        on:
+          tags: true
