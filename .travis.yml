@@ -22,6 +22,7 @@ jobs:
       script:
         - npm run build
       deploy:
+        <<: *deploy
         app: shri-node-awesome-master
 
     - stage: Deploy (production)
