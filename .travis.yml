@@ -1,0 +1,16 @@
+sudo: false
+language: node_js
+node_js:
+- node
+- 8
+script:
+- npm run lint
+- npm run test
+- npm run build
+
+aliases:
+  deploy: &deploy
+    provider: heroku
+    api_key:
+      secure: dfNJHox8q6BDFRGbWuaMeM9oBuQG95XjgY0n4QQm/k2xSkVxHCm59zuOHQw1PpM/3AiCk9UPfk0MOMxVizhTneknXtEdLm/ojP4Ea16UAg4/BiTExLJGXU7jCmucphK9tdrmSwvXNCjE6zrr6UGM0ElarKgVuJsol17TIiaqFCvLXr/gKCCCDHzflZU/5JuCGotu+6z8VoIE18pZJR9Rxn7vEGYXsim2bzWo1awRtWIRDNEK6W90P/TzIh6caoDAKdWilsaA2N0vU66L8j4yq3h8bfCEvV3qUPLA4T33ME39Dq63Lhy76HzaL9EEjWOhhwMmTv2KoZK3GeN2BoSZVUGkWuAqTvLpkza//ZRhvowFjwXrU48CR+4Pc2KQP/RrJILUb7s63xY+wWWeWjRsRenvIXq/AaX52+xCQWG9IfOJm09/Xc+6dZ+SIoepUuFHAqzOHXmTuOujR2Mc2pZ9B2uJBO0rBWmik6TSUTMsHmbRpAd66bW8DCB3Rr1U7Ssj7GMcektjMHQDoTjqQcZU+QE20+pZPEdLFD1YrhEfjDMTUb/abGGn1SzqnyxPuPzqKCPP4MFhIElXe7y0PhQeMKsQlR/dhWJI+PA/d/smjunD/yYqDkNj8W9ueErpJK3mcXQMY64CFVQjrQRYfSEQnVHh3aRbE5OiuFdqBWwopvc=
+    skip_cleanup: true
