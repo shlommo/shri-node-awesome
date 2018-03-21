@@ -34,3 +34,4 @@ jobs:
         app: shri-node-awesome-production
         on:
           tags: true
+          all_branches: true
