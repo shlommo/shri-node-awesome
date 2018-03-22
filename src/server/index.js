@@ -4,8 +4,6 @@ const path = require('path');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackConfigFunc = require('./../../webpack.config.js');
-// const { exec } = require('child_process');
-// const { repoPath } = require('./configs');
 const indexRoute = require('./routes/index');
 
 const app = express();
