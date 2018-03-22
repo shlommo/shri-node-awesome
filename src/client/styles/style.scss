@@ -19,9 +19,14 @@ h1,
 h2,
 h3,
 h4,
-p {
+p,
+ul {
   margin: 0;
   padding: 0;
+}
+
+ul {
+  list-style: none;
 }
 
 .app__container {
@@ -46,6 +51,10 @@ p {
   margin-bottom: 40px;
 }
 
+.app__trees {
+  font-family: sans-serif;
+}
+
 .app__header {
   padding: 12px;
   border: 2px solid #666;
@@ -53,6 +62,15 @@ p {
 
 .app__content {
   border: 2px solid #666;
+}
+
+.app__repo-name {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.app__trees ul {
+  padding-left: 20px;
 }
 
 .page-not-found {
