@@ -12,8 +12,8 @@
     "build": "webpack --mode production",
     "watch": "webpack --mode development --watch",
     "start": "npm run server:prod",
-    "server:prod": "npm run build && export NODE_ENV=production && nodemon src/server/index.js",
-    "server:dev": "export NODE_ENV=development && nodemon src/server/index.js"
+    "server:prod": "npm run build && export NODE_ENV=production && nodemon index.js",
+    "server:dev": "export NODE_ENV=development && nodemon index.js"
   },
   "author": "Sayan Zhakupbekov",
   "license": "ISC",
@@ -41,6 +41,7 @@
     "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {
+    "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "lodash": "^4.17.5",
     "pug": "^2.0.1",
