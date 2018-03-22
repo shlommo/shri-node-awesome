@@ -4,6 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, argv) => ({
+  mode: 'development',
   entry: [
     './src/client/js/index.js',
     './src/client/styles/style.scss'
