@@ -8,7 +8,7 @@ script:
 - npm run test
 - npm run build
 env:
-  - REPO=awesome_project
+- REPO=awesome_project
 
 aliases:
   deploy: &deploy
