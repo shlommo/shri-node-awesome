@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
 const express = require('express');
-
 const path = require('path');
-
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
-const configFunc = require('./../../webpack.config.js');
+const webpackConfigFunc = require('./../../webpack.config.js');
+// const { exec } = require('child_process');
+// const { repoPath } = require('./configs');
+const indexRoute = require('./routes/index');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -17,18 +18,20 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 if (isDevelopment) {
-  const config = configFunc(null, 'development');
-  const compiler = webpack(config);
+  const webpackConfig = webpackConfigFunc(null, 'development');
+  const compiler = webpack(webpackConfig);
 
   app.use(webpackDevMiddleware(compiler, {
-    publicPath: config.output.publicPath
+    publicPath: webpackConfig.output.publicPath
   }));
 } else {
   app.use(express.static(path.join(__dirname, '../../dist')));
 }
 
-app.get('/', (req, res) => {
-  res.render('index', { mainTitle: 'Mega git', pageTitle: 'The Modern Digital IT Product' });
+app.use('/', indexRoute);
+
+app.use((req, res) => {
+  res.status(404).render('404', { mainTitle: 'Mega GIT is not found' });
 });
 
 const server = app.listen(app.get('port'), () => {

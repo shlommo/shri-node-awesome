@@ -24,7 +24,8 @@ p {
   padding: 0;
 }
 
-.container {
+.app__container {
+  display: block;
   max-width: 960px;
   margin-left: auto;
   margin-right: auto;
@@ -52,4 +53,11 @@ p {
 
 .app__content {
   border: 2px solid #666;
+}
+
+.page-not-found {
+  width: 100vw;
+  height: 100vh;
+  background: url("../img/404.svg") no-repeat 50% 50%;
+  background-size: contain;
 }
