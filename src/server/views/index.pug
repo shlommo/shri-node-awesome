@@ -5,8 +5,13 @@ block content
     setion.app__container
       h1.title.--center.app__title= pageTitle
       header.app__header
+        div.app__repo-name= repoName
         div.app__trees
-          p список веток
+          div.app__trees-label Список веток:
+          ul
+            each val in branchArr
+              li
+                a(href=`/tree/${val}`)= val
       div.app__content
         div.app__column.--commits
         div.app__column.--files
