@@ -1,6 +1,6 @@
 const express = require('express');
 const App = require('./../app');
-const { repoName } = require('./../configs');
+const appConfigs = require('./../configs');
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
       res.render('index', {
         mainTitle: 'Mega GIT',
         pageTitle: 'The Modern Digital IT Product',
-        repoName,
+        repoName: appConfigs.repoName,
         branchArr: data
       });
     })

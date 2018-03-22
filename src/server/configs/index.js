@@ -1,13 +1,29 @@
-const getRepoName = (path) => {
-  const pathArr = path.split('/');
+class Configs {
+  constructor() {
+    this.inputRepoPath = '';
+    this.inputRepoName = '';
+  }
 
-  return pathArr[pathArr.length - 1];
-};
+  set repoPath(path) {
+    this.inputRepoPath = path;
+    // this.inputRepoPath = '/Users/event/Desktop/shri-node/src/server/';
+  }
 
-const configs = {
-  repoPath: '/Users/event/Desktop/shri-node'
-};
+  get repoPath() {
+    return this.inputRepoPath;
+  }
 
-configs.repoName = getRepoName(configs.repoPath);
+  set repoName(path) {
+    const pathArr = path.split('/');
 
-module.exports = configs;
+    this.inputRepoName = pathArr[pathArr.length - 1];
+  }
+
+  get repoName() {
+    return this.inputRepoName;
+  }
+}
+
+// configs.repoName = getRepoName(configs.repoPath);
+
+module.exports = new Configs();

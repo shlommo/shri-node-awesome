@@ -5,10 +5,17 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackConfigFunc = require('./../../webpack.config.js');
 const indexRoute = require('./routes/index');
+const dotenv = require('dotenv');
+const appConfigs = require('./configs');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 const isDevelopment = process.env.NODE_ENV !== 'production';
+const config = dotenv.config();
+const repoPath = path.join(__dirname, `../../${config.parsed.REPO}`);
+
+appConfigs.repoPath = repoPath;
+appConfigs.repoName = repoPath;
 
 app.set('port', PORT);
 
@@ -30,6 +37,14 @@ app.use('/', indexRoute);
 
 app.use((req, res) => {
   res.status(404).render('404', { mainTitle: 'Mega GIT is not found' });
+});
+
+app.use((err, req, res) => {
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  res.status(err.status || 500);
+  res.send('error');
 });
 
 const server = app.listen(app.get('port'), () => {
