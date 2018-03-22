@@ -8,7 +8,7 @@ class App {
   }
 
   getAllBranches() {
-    return this.makeExecCommand(`cd ${repoPath} && git branch --list`, ['', '* ']);
+    return this.makeExecCommand('git branch --list', ['', '* ']);
   }
 }
 
