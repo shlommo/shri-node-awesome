@@ -3,9 +3,10 @@ const _ = require('lodash');
 const deleteChars = (string, chars = []) => {
   let str = string;
   chars.map((char) => {
-    str = _.trim(string, char);
+    str = _.trim(str, char);
     return char;
   });
+  str = _.trim(str);
   return str;
 };
 

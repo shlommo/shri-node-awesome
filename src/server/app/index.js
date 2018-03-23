@@ -12,7 +12,7 @@ class App {
   }
 
   getAllBranches() {
-    return this.makeExecCommand(`cd ${appConfigs.repoPath} && git branch --list`, ['', '*']);
+    return this.makeExecCommand(`cd ${appConfigs.repoPath} && git branch --list`, ['*']);
   }
 }
 
