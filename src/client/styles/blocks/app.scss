@@ -22,6 +22,7 @@
 
 .app__content {
   border: 2px solid #666;
+  border-top: none;
 }
 
 .app__repo-name {
@@ -34,6 +35,17 @@
   padding: 16px 12px;
 }
 
+.app__trees a {
+  color: #0074D9;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .app__trees ul {
   padding-left: 20px;
+}
+
+.app__branch-name {
+  padding-left: 8px;
 }
