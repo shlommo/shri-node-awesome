@@ -23,7 +23,7 @@ if (isDevelopment) {
     publicPath: webpackConfig.output.publicPath
   }));
 } else {
-  app.use(express.static(path.join(__dirname, '../../dist')));
+  app.use(express.static('dist'));
 }
 
 app.use('/', indexRoute);
