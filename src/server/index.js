@@ -5,15 +5,10 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackConfigFunc = require('./../../webpack.config.js');
 const indexRoute = require('./routes/index');
-const appConfigs = require('./configs');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 const isDevelopment = process.env.NODE_ENV !== 'production';
-const repoPath = path.join(__dirname, `../../${process.env.REPO}`);
-
-appConfigs.repoPath = repoPath;
-appConfigs.repoName = repoPath;
 
 app.set('port', PORT);
 
