@@ -1,4 +1,3 @@
-const appConfigs = require('./../configs');
 const git = require('./git');
 
 class App {
@@ -7,12 +6,12 @@ class App {
   }
 
   renderAllBranches(req, res) {
-    this.git.getAllBranches(appConfigs.repoPath)
+    this.git.getAllBranches()
       .then((branchArr) => {
         res.render('index', {
           mainTitle: 'Mega GIT',
           pageTitle: 'The Modern Digital IT Product',
-          repoName: this.repoName,
+          repoName: process.env.REPO,
           branchArr
         });
       });
