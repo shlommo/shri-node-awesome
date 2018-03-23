@@ -5,14 +5,12 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackConfigFunc = require('./../../webpack.config.js');
 const indexRoute = require('./routes/index');
-const dotenv = require('dotenv');
 const appConfigs = require('./configs');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 const isDevelopment = process.env.NODE_ENV !== 'production';
-const config = dotenv.config();
-const repoPath = path.join(__dirname, `../../${config.parsed.REPO}`);
+const repoPath = path.join(__dirname, `../../${process.env.REPO}`);
 
 appConfigs.repoPath = repoPath;
 appConfigs.repoName = repoPath;
