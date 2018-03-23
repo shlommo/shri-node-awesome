@@ -1,0 +1,28 @@
+extends layout.pug
+
+block content
+  div.app
+    setion.app__container
+      h1.title.--center.app__title The Modern Digital IT Product
+      header.app__header
+        div.app__repo-name= process.env.REPO
+        div.app__trees
+          a(href=`/`) ../
+          div.app__branch-name= branch
+      div.app__content
+        ul.commit-list
+          li.commit-list__row.--header
+            .commit-list__cell
+              span хеш
+            .commit-list__cell.--message
+              span комментарий
+            .commit-list__cell
+              span автор
+          each item in commitsArr
+            li.commit-list__row
+              .commit-list__cell.--commit
+                a(href=`/commit/${item.hash}`)= item.hash
+              .commit-list__cell
+                a(href=`/commit/${item.hash}`)= item.message
+              .commit-list__cell
+                span= item.author
