@@ -1,0 +1,39 @@
+.app__container {
+  display: block;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.app__title {
+  margin-bottom: 40px;
+}
+
+.app__trees,
+.app__content {
+  font-family: sans-serif;
+}
+
+.app__header {
+  border: 2px solid #666;
+}
+
+.app__content {
+  border: 2px solid #666;
+}
+
+.app__repo-name {
+  padding: 12px 12px 14px;
+  font-size: 18px;
+  border-bottom: 2px solid #666;
+}
+
+.app__trees {
+  padding: 16px 12px;
+}
+
+.app__trees ul {
+  padding-left: 20px;
+}
