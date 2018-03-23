@@ -3,9 +3,9 @@ extends layout.pug
 block content
   div.app
     setion.app__container
-      h1.title.--center.app__title= pageTitle
+      h1.title.--center.app__title The Modern Digital IT Product
       header.app__header
-        div.app__repo-name= repoName
+        div.app__repo-name= process.env.REPO
         div.app__trees
           div.app__trees-label Список веток:
           ul
@@ -13,5 +13,3 @@ block content
               li
                 a(href=`/tree/${val}`)= val
       div.app__content
-        div.app__column.--commits
-        div.app__column.--files
