@@ -24,6 +24,6 @@ class Configs {
   }
 }
 
-// configs.repoName = getRepoName(configs.repoPath);
+const configs = new Configs();
 
-module.exports = new Configs();
+module.exports = configs;
