@@ -9,14 +9,25 @@ class App {
     this.git.getAllBranches()
       .then((branchArr) => {
         res.render('index', {
-          mainTitle: 'Mega GIT',
-          pageTitle: 'The Modern Digital IT Product',
-          repoName: process.env.REPO,
           branchArr
         });
       });
   }
+
+  renderCommitsFromBranch(req, res) {
+    const { branch } = req.params;
+
+    this.git.getBranchCommits(branch)
+      .then((commitsArr) => {
+        res.render('commits', {
+          mainTitle: 'Mega GIT: commits',
+          branch,
+          commitsArr
+        });
+      });
+  }
 }
+
 const app = new App(git);
 
 module.exports = app;
