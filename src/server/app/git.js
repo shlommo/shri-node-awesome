@@ -6,6 +6,7 @@ const _ = require('lodash');
 class Git {
   constructor(execPromise) {
     this.exec = execPromise;
+    this.path = `./${process.env.REPO}`;
   }
 
   parseBranches(data) {
@@ -17,9 +18,9 @@ class Git {
     });
   }
 
-  getAllBranches(repoPath) {
+  getAllBranches() {
     return new Promise((resolve, reject) => {
-      this.exec(`cd ${repoPath} && git branch --list`)
+      this.exec(`cd ${this.path} && git branch --list`)
         .then((res) => {
           this.branches = this.parseBranches(res.stdout);
           resolve(this.branches);
