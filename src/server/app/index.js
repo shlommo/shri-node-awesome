@@ -53,6 +53,19 @@ class App {
         }
       });
   }
+
+  renderFile(req, res) {
+    const { hash, parent } = req.query;
+
+    this.git.getFile(hash)
+      .then((fileData) => {
+        res.render('file', {
+          mainTitle: 'Mega GIT: files',
+          fileData,
+          parent
+        });
+      });
+  }
 }
 
 const app = new App(git);
