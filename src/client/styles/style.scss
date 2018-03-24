@@ -29,15 +29,6 @@ ul {
   list-style: none;
 }
 
-.app__container {
-  display: block;
-  max-width: 960px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
 .title {
   font-size: 24px;
   color: #333;
@@ -47,35 +38,13 @@ ul {
   text-align: center;
 }
 
-.app__title {
-  margin-bottom: 40px;
-}
-
-.app__trees {
-  font-family: sans-serif;
-}
-
-.app__header {
-  padding: 12px;
-  border: 2px solid #666;
-}
-
-.app__content {
-  border: 2px solid #666;
-}
-
-.app__repo-name {
-  margin-bottom: 20px;
-  font-size: 18px;
-}
-
-.app__trees ul {
-  padding-left: 20px;
-}
-
 .page-not-found {
   width: 100vw;
   height: 100vh;
   background: url("../img/404.svg") no-repeat 50% 50%;
   background-size: contain;
 }
+
+@import "./blocks/app.scss";
+@import "./blocks/item-list.scss";
+@import "./blocks/branch-list.scss";

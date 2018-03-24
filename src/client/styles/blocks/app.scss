@@ -1,0 +1,65 @@
+.app__container {
+  display: block;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.app__title {
+  margin-bottom: 40px;
+}
+
+.app__trees,
+.app__content {
+  font-family: sans-serif;
+}
+
+.app__header {
+  border: 2px solid #666;
+}
+
+.app__content {
+  border: 2px solid #666;
+  border-top: none;
+}
+
+.app__repo-name {
+  padding: 12px 12px 14px;
+  font-size: 18px;
+  border-bottom: 2px solid #666;
+}
+
+.app__trees {
+  padding: 16px 12px;
+}
+
+.app__trees a {
+  color: #0074D9;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.app__trees-label {
+  margin-bottom: 12px;
+}
+
+.app__content pre {
+  display: block;
+  margin: 0;
+  padding: 12px;
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
+.app__content.--file-structure {
+  background-color: #ffdc0040;
+}
+
+@media only screen and (max-width : 460px) {
+  .app__repo-name {
+    font-size: 16px;
+  }
+}

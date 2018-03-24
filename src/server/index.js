@@ -5,18 +5,15 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackConfigFunc = require('./../../webpack.config.js');
 const indexRoute = require('./routes/index');
-const appConfigs = require('./configs');
+const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 const isDevelopment = process.env.NODE_ENV !== 'production';
-const repoPath = path.join(__dirname, `../../${process.env.REPO}`);
-
-appConfigs.repoPath = repoPath;
-appConfigs.repoName = repoPath;
 
 app.set('port', PORT);
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -28,7 +25,7 @@ if (isDevelopment) {
     publicPath: webpackConfig.output.publicPath
   }));
 } else {
-  app.use(express.static(path.join(__dirname, '../../dist')));
+  app.use(express.static('dist'));
 }
 
 app.use('/', indexRoute);

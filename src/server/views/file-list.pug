@@ -1,0 +1,22 @@
+extends layout.pug
+
+block content
+  div.app
+    setion.app__container
+      h1.title.--center.app__title The Modern Digital IT Product
+      header.app__header
+        div.app__repo-name= process.env.REPO
+        div.app__trees
+          - const url = parentPath !== undefined ? `/tree?value=${parentPath}` : '/';
+          a(href= url) ../
+          div.app__branch-name= branch
+      div.app__content
+        ul.item-list
+          each dir in dirsArr
+            li.item-list__row
+              span.item-list__cell
+                a(href=`/tree?value=${dir.hash}`)= dir.name
+          each file in filesArr
+            li.item-list__row
+              span.item-list__cell
+                a(href=`/file?hash=${file.hash}&parent=${parentPath}`)= file.name

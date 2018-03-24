@@ -8,6 +8,7 @@
 # production
 /dist
 .env
+/awesome_project
 
 # misc
 .DS_Store
