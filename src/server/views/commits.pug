@@ -21,8 +21,8 @@ block content
           each item in commitsArr
             li.item-list__row
               .item-list__cell
-                a(href=`/commit/${item.hash}`)= item.hash
+                a(href=`/tree?value=${item.hash}`)= item.hash
               .item-list__cell
-                a(href=`/commit/${item.hash}`)= item.message
+                a(href=`/tree?value=${item.hash}`)= item.message
               .item-list__cell.--author
                 span= item.author
