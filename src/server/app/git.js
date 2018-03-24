@@ -85,6 +85,18 @@ class Git {
         });
     });
   }
+
+  getFile(hash) {
+    return new Promise((resolve, reject) => {
+      this.exec(`cd ${this.path} && git show ${hash}`)
+        .then((res) => {
+          resolve(res.stdout);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
 }
 
 module.exports = new Git(exec);
