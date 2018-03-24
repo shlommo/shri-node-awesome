@@ -9,7 +9,7 @@ block content
         div.app__trees
           div.app__trees-label Список веток:
           ul
-            each val in branchArr
+            each branch in branchArr
               li
-                a(href=`/tree/${val}`)= val
+                a(href=`/commits/${branch}`)= branch
       div.app__content

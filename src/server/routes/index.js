@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   app.renderAllBranches(req, res);
 });
 
-router.get('/tree/:branch', (req, res) => {
+router.get('/commits/:branch', (req, res) => {
   app.renderCommitsFromBranch(req, res);
 });
 
