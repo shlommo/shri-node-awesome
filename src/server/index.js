@@ -5,13 +5,15 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackConfigFunc = require('./../../webpack.config.js');
 const indexRoute = require('./routes/index');
+const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 app.set('port', PORT);
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
