@@ -41,8 +41,8 @@ class App {
         return { dirsArr, filesArr };
       })
       .then(({ dirsArr, filesArr }) => {
-        res.render('fileList', {
-          mainTitle: 'Mega GIT: files',
+        res.render('file-list', {
+          mainTitle: 'Mega GIT: files-list',
           parentPath: this.pastDir,
           dirsArr,
           filesArr
