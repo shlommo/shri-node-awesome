@@ -15,4 +15,8 @@ router.get('/tree', (req, res) => {
   app.renderDir(req, res);
 });
 
+router.get('/file', (req, res) => {
+  app.renderFile(req, res);
+});
+
 module.exports = router;
