@@ -45,3 +45,21 @@
 .app__trees-label {
   margin-bottom: 12px;
 }
+
+.app__content pre {
+  display: block;
+  margin: 0;
+  padding: 12px;
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
+.app__content.--file-structure {
+  background-color: #ffdc0040;
+}
+
+@media only screen and (max-width : 460px) {
+  .app__repo-name {
+    font-size: 16px;
+  }
+}

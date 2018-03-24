@@ -1,6 +1,7 @@
 .item-list {
   display: table;
   width: 100%;
+  table-layout: fixed;
 }
 
 .item-list__row {
@@ -40,5 +41,25 @@
   color: #000;
   &:hover {
     text-decoration: none;
+  }
+}
+
+@media only screen and (max-width : 460px) {
+  .item-list {
+    font-size: 14px;
+  }
+
+  .item-list__cell {
+    padding-left: 4px;
+    padding-right: 4px;
+    white-space: pre-line;
+    word-break: break-word;
+    &:first-child {
+      width: 25%;
+      max-width: 70px;
+    }
+    &:nth-child(2) {
+      width: 45%;
+    }
   }
 }
