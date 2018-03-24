@@ -8,8 +8,12 @@ block content
         div.app__repo-name= process.env.REPO
         div.app__trees
           div.app__trees-label Список веток:
-          ul
+          ul.branch-list
             each branch in branchArr
               li
-                a(href=`/commits/${branch}`)= branch
+                span= branch
+                div.branch-list__links
+                  a(href=`/commits/${branch}`) коммиты
+                  span.branch-list__links-separator /
+                  a(href=`/tree?value=${branch}`) файлы
       div.app__content
