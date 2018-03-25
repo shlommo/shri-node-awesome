@@ -31,16 +31,11 @@ class App {
   renderDir(req, res) {
     const { value } = req.query;
 
-    // console.log();
     this.git.getDirFiles(value)
       .then((dir) => {
-        const fileStructure = dir;
-        const dirsArr = fileStructure.filter(item => item.type !== 'blob');
-        const filesArr = fileStructure.filter(item => item.type !== 'tree');
+        const dirsArr = dir.filter(item => item.type !== 'blob');
+        const filesArr = dir.filter(item => item.type !== 'tree');
 
-        return { dirsArr, filesArr };
-      })
-      .then(({ dirsArr, filesArr }) => {
         res.render('file-list', {
           mainTitle: 'Mega GIT: files-list',
           parentPath: this.pastDir,
