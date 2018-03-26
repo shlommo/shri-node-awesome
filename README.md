@@ -36,3 +36,7 @@ heroku stack:set container -a shri-node-awesome-production
 
 Travis CI:
 https://travis-ci.org/szhakupbekov/shri-node-awesome/branches
+
+## Тестирование
+Добавлены модульные и интеграционные тесты.
+Для тетирования промисов я использовал плагин chai-as-promised(расширяет возможности стнадартного chai)
