@@ -6,7 +6,6 @@ const _ = require('lodash');
 class Git {
   constructor(execPromise) {
     this.exec = execPromise;
-    this.path = `./${process.env.REPO}`;
   }
 
   parseBranches(data) {
@@ -46,9 +45,9 @@ class Git {
     });
   }
 
-  getAllBranches() {
+  getAllBranches(path) {
     return new Promise((resolve, reject) => {
-      this.exec(`cd ${this.path} && git branch --list`)
+      this.exec(`cd ${path} && git branch --list`)
         .then((res) => {
           this.branches = this.parseBranches(res.stdout);
           resolve(this.branches);
@@ -59,9 +58,9 @@ class Git {
     });
   }
 
-  getBranchCommits(branch) {
+  getBranchCommits(path, branch) {
     return new Promise((resolve, reject) => {
-      this.exec(`cd ${this.path} && git log ${branch} --pretty="%h|%s|%cn|%cd" --date=short`)
+      this.exec(`cd ${path} && git log ${branch} --pretty="%h|%s|%cn|%cd" --date=short`)
         .then((res) => {
           const commits = this.parseCommits(res.stdout);
           resolve(commits);
@@ -72,9 +71,9 @@ class Git {
     });
   }
 
-  getDirFiles(value) {
+  getDirFiles(path, value) {
     return new Promise((resolve, reject) => {
-      this.exec(`cd ${this.path} && git ls-tree --full-name --abbrev ${value}`)
+      this.exec(`cd ${path} && git ls-tree --full-name --abbrev ${value}`)
         .then((res) => {
           const dir = this.parseDir(res.stdout);
 
@@ -86,9 +85,9 @@ class Git {
     });
   }
 
-  getFile(hash) {
+  getFile(path, hash) {
     return new Promise((resolve, reject) => {
-      this.exec(`cd ${this.path} && git show ${hash}`)
+      this.exec(`cd ${path} && git show ${hash}`)
         .then((res) => {
           resolve(res.stdout);
         })
