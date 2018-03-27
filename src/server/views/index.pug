@@ -1,19 +1,13 @@
 extends layout.pug
 
-block content
-  div.app
-    div.app__container
-      h1.title.--center.app__title The Modern Digital IT Product
-      header.app__header
-        div.app__repo-name= process.env.REPO
-        div.app__trees
-          div.app__trees-label Список веток:
-          ul.branch-list
-            each branch in branchArr
-              li
-                span= branch
-                div.branch-list__links
-                  a(href=`/commits/${branch}`) коммиты
-                  span.branch-list__links-separator /
-                  a(href=`/tree/${branch}`) файлы
-      div.app__content
+block header
+  div.app__trees
+    div.app__trees-label Список веток:
+    ul.branch-list
+      each branch in branchArr
+        li
+          span= branch
+          div.branch-list__links
+            a(href=`/commits/${branch}`) коммиты
+            span.branch-list__links-separator /
+            a(href=`/tree/${branch}`) файлы

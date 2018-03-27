@@ -1,26 +1,23 @@
 extends layout.pug
 
-block content
-  - const commitUrl = commit !== undefined ? `/${commit}` : '';
-  div.app
-    div.app__container
-      h1.title.--center.app__title The Modern Digital IT Product
-      header.app__header
-        div.app__repo-name= process.env.REPO
-        div.app__trees
-          include includes/breadcrumbs.pug
+block header
+  - const commitUrl = commit !== undefined ? `/${commit}` : ''
 
-          div.app__branch-name= branch
-      div.app__content
-        ul.item-list
-          each dir in dirArr
-            li.item-list__row
-              span.item-list__cell
-                - const fullPath = `./${dir.name}`
-                - const dirNameArr = dir.name.split('/')
-                - const dirName = dirNameArr[dirNameArr.length - 1]
-                if (dir.type === 'tree')
-                  a(href=`/tree/${branch}${commitUrl}?path=${fullPath}`)= dirName
-                else
-                  - const fileHash = dir.hash.slice(0, 6)
-                  a(href=`/tree/${branch}${commitUrl}?path=${fullPath}&fileHash=${fileHash}`)= dirName
+  div.app__trees
+    include includes/breadcrumbs.pug
+    div.app__branch-name= `${branch} ${commit || ''}`
+
+block content
+  div.app__content
+    ul.item-list
+      each dir in dirArr
+        li.item-list__row
+          span.item-list__cell
+            - const fullPath = `./${dir.name}`
+            - const dirNameArr = dir.name.split('/')
+            - const dirName = dirNameArr[dirNameArr.length - 1]
+            if (dir.type === 'tree')
+              a(href=`/tree/${branch}${commitUrl}?path=${fullPath}`)= dirName
+            else
+              - const fileHash = dir.hash.slice(0, 6)
+              a(href=`/tree/${branch}${commitUrl}?path=${fullPath}&fileHash=${fileHash}`)= dirName
