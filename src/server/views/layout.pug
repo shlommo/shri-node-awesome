@@ -18,5 +18,11 @@ html(lang="ru")
 
     link(rel="stylesheet" href="/css/style.min.css")
   body
-    block content
+    div.app
+      div.app__container
+        h1.title.--center.app__title The Modern Digital IT Product
+        div.app__header
+          div.app__repo-name= process.env.REPO
+          block header
+        block content
     script(src="/js/bundle.js")
