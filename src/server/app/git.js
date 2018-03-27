@@ -71,9 +71,10 @@ class Git {
     });
   }
 
-  getDirFiles(path, value) {
+  getDirFiles(repoPath, root, path) {
+    const pathValue = `${path}/`;
     return new Promise((resolve, reject) => {
-      this.exec(`cd ${path} && git ls-tree --full-name --abbrev ${value}`)
+      this.exec(`cd ${repoPath} && git ls-tree ${root} ${pathValue}`)
         .then((res) => {
           const dir = this.parseDir(res.stdout);
 

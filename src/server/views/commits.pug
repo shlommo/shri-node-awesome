@@ -18,11 +18,11 @@ block content
               span комментарий
             .item-list__cell.--author
               span автор
-          each item in commitsArr
+          each commit in commitsArr
             li.item-list__row
               .item-list__cell
-                a(href=`/tree?value=${item.hash}`)= item.hash
+                a(href=`/tree/${branch}/${commit.hash}`)= commit.hash
               .item-list__cell
-                a(href=`/tree?value=${item.hash}`)= item.message
+                a(href=`/tree?value=${commit.hash}`)= commit.message
               .item-list__cell.--author
-                span= item.author
+                span= commit.author

@@ -2,12 +2,14 @@ extends layout.pug
 
 block content
   div.app
+  - const commitUrl = commit !== undefined ? `/${commit}` : '';
     div.app__container
       h1.title.--center.app__title The Modern Digital IT Product
       header.app__header
         div.app__repo-name= process.env.REPO
         div.app__trees
-          a(href= '/') ../
+          include includes/breadcrumbs.pug
+
           div.app__branch-name= branch
       div.app__content.--file-structure
         pre= fileData

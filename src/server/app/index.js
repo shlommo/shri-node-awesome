@@ -1,4 +1,5 @@
 const git = require('./git');
+const getBreacrumbs = require('./utils/get-breacrumbs');
 
 class App {
   constructor(gitApp) {
@@ -7,19 +8,18 @@ class App {
   }
 
   renderAllBranches(req, res) {
-    this.git.getAllBranches(this.path)
+    return this.git.getAllBranches(this.path)
       .then((branchArr) => {
         res.render('index', {
           branchArr
         });
-        this.pastDir = undefined;
       });
   }
 
   renderCommitsFromBranch(req, res) {
     const { branch } = req.params;
 
-    this.git.getBranchCommits(this.path, branch)
+    return this.git.getBranchCommits(this.path, branch)
       .then((commitsArr) => {
         res.render('commits', {
           mainTitle: 'Mega GIT: commits',
@@ -30,36 +30,41 @@ class App {
   }
 
   renderDir(req, res) {
-    const { value } = req.query;
+    const { branch, commit } = req.params;
+    const { path, fileHash } = req.query;
+    const root = commit || branch;
+    const pathValue = path || './';
+    const breadCrumbs = getBreacrumbs(pathValue);
 
-    this.git.getDirFiles(this.path, value)
-      .then((dir) => {
-        const dirsArr = dir.filter(item => item.type !== 'blob');
-        const filesArr = dir.filter(item => item.type !== 'tree');
+    if (fileHash !== undefined) {
+      return this.git.getFile(this.path, fileHash)
+        .then((fileData) => {
+          res.render('file', {
+            mainTitle: 'Mega GIT: files',
+            fileData,
+            branch,
+            commit,
+            breadCrumbs
+          });
+        });
+    }
+
+    return this.git.getDirFiles(this.path, root, pathValue)
+      .then((dirArr) => {
+        const sortedDirs = dirArr.sort((a, b) => {
+          if (a.type > b.type) {
+            return -1;
+          }
+          return 1;
+        });
 
         res.render('file-list', {
           mainTitle: 'Mega GIT: files-list',
-          parentPath: this.pastDir,
-          branch: value,
-          dirsArr,
-          filesArr
-        });
-
-        if (value !== undefined) {
-          this.pastDir = value;
-        }
-      });
-  }
-
-  renderFile(req, res) {
-    const { hash, parent } = req.query;
-
-    this.git.getFile(this.path, hash)
-      .then((fileData) => {
-        res.render('file', {
-          mainTitle: 'Mega GIT: files',
-          fileData,
-          parent
+          commit,
+          parentPath: path,
+          branch,
+          dirArr: sortedDirs,
+          breadCrumbs
         });
       });
   }
