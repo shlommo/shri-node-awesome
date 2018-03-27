@@ -11,12 +11,8 @@ router.get('/commits/:branch', (req, res) => {
   app.renderCommitsFromBranch(req, res);
 });
 
-router.get('/tree', (req, res) => {
+router.get(['/tree/:branch', '/tree/:branch/:commit'], (req, res) => {
   app.renderDir(req, res);
-});
-
-router.get('/file', (req, res) => {
-  app.renderFile(req, res);
 });
 
 module.exports = router;

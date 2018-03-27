@@ -1,0 +1,16 @@
+ul.breadcrumbs
+  - let baseUrl = '/'
+  if (commit !== undefined)
+    - baseUrl = `/commits/${branch}`
+  li
+    a(href= baseUrl) ../
+
+  - let breadUrl = ''
+  - const breadWithoutLast = breadCrumbs.slice(0, -1)
+  each bread in breadWithoutLast
+    - breadUrl += `${bread}/`
+    li
+      a(href=`/tree/${branch}${commitUrl}?path=${breadUrl}`)= bread
+  - const lastBread = breadCrumbs.slice(-1)
+  li
+    span= lastBread
