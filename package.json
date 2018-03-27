@@ -7,7 +7,7 @@
     "eslint": "eslint \"src/**/*.js\"",
     "stylelint": "stylelint \"src/client/styles/**/*.scss\"",
     "lint": "npm run eslint && npm run stylelint",
-    "test": "nyc mocha tests/unit/*.test.js",
+    "test": "nyc mocha tests/unit/*",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "watch": "webpack --mode development --watch",
