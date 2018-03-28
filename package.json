@@ -10,7 +10,7 @@
     "clone-repo": "git clone --mirror https://github.com/szhakupbekov/shri-node-awesome.git awesome_project",
     "selenium": "selenium-standalone start",
     "hermione": "./node_modules/.bin/hermione",
-    "test": "nyc mocha tests/unit/*.test.js",
+    "test": "nyc mocha tests/unit/*",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "watch": "webpack --mode development --watch",
