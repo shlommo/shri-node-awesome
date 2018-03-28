@@ -1,5 +1,5 @@
 module.exports = {
-  baseUrl: 'http://0.0.0.0:8080',
+  baseUrl: 'https://shri-node-awesome-production.herokuapp.com/',
   gridUrl: 'http://0.0.0.0:4444/wd/hub',
 
   sets: {
