@@ -46,44 +46,29 @@ class Git {
   }
 
   getAllBranches(path) {
-    return new Promise((resolve, reject) => {
-      this.exec(`cd ${path} && git branch --list`)
-        .then((res) => {
-          this.branches = this.parseBranches(res.stdout);
-          resolve(this.branches);
-        })
-        .catch((error) => {
-          reject(error);
-        });
-    });
+    return this.exec(`cd ${path} && git branch --list`)
+      .then((res) => {
+        this.branches = this.parseBranches(res.stdout);
+        return this.branches;
+      });
   }
 
   getBranchCommits(path, branch) {
-    return new Promise((resolve, reject) => {
-      this.exec(`cd ${path} && git log ${branch} --pretty="%h|%s|%cn|%cd" --date=short`)
-        .then((res) => {
-          const commits = this.parseCommits(res.stdout);
-          resolve(commits);
-        })
-        .catch((error) => {
-          reject(error);
-        });
-    });
+    return this.exec(`cd ${path} && git log ${branch} --pretty="%h|%s|%cn|%cd" --date=short`)
+      .then((res) => {
+        const commits = this.parseCommits(res.stdout);
+        return commits;
+      });
   }
 
   getDirFiles(repoPath, root, path) {
     const pathValue = `${path}/`;
-    return new Promise((resolve, reject) => {
-      this.exec(`cd ${repoPath} && git ls-tree ${root} ${pathValue}`)
-        .then((res) => {
-          const dir = this.parseDir(res.stdout);
+    return this.exec(`cd ${repoPath} && git ls-tree ${root} ${pathValue}`)
+      .then((res) => {
+        const dir = this.parseDir(res.stdout);
 
-          resolve(dir);
-        })
-        .catch((error) => {
-          reject(error);
-        });
-    });
+        return dir;
+      });
   }
 
   getFile(path, hash) {

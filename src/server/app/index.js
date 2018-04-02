@@ -7,16 +7,19 @@ class App {
     this.path = `./${process.env.REPO}`;
   }
 
-  renderAllBranches(req, res) {
+  renderAllBranches(req, res, next) {
     return this.git.getAllBranches(this.path)
       .then((branchArr) => {
         res.render('index', {
           branchArr
         });
+      })
+      .catch((error) => {
+        next(error);
       });
   }
 
-  renderCommitsFromBranch(req, res) {
+  renderCommitsFromBranch(req, res, next) {
     const { branch } = req.params;
 
     return this.git.getBranchCommits(this.path, branch)
@@ -26,10 +29,13 @@ class App {
           branch,
           commitsArr
         });
+      })
+      .catch((error) => {
+        next(error);
       });
   }
 
-  renderDir(req, res) {
+  renderDir(req, res, next) {
     const { branch, commit } = req.params;
     const { path, fileHash } = req.query;
     const root = commit || branch;
@@ -46,6 +52,9 @@ class App {
             commit,
             breadCrumbs
           });
+        })
+        .catch((error) => {
+          next(error);
         });
     }
 
@@ -66,6 +75,9 @@ class App {
           dirArr: sortedDirs,
           breadCrumbs
         });
+      })
+      .catch((error) => {
+        next(error);
       });
   }
 }
