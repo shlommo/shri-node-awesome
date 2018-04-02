@@ -1,5 +1,6 @@
 const git = require('./git');
 const getBreacrumbs = require('./utils/get-breacrumbs');
+const _ = require('lodash');
 
 class App {
   constructor(gitApp) {
@@ -60,12 +61,7 @@ class App {
 
     return this.git.getDirFiles(this.path, root, pathValue)
       .then((dirArr) => {
-        const sortedDirs = dirArr.sort((a, b) => {
-          if (a.type > b.type) {
-            return -1;
-          }
-          return 1;
-        });
+        const sortedDirs = _.orderBy(dirArr, ['type'], ['desc']);
 
         res.render('file-list', {
           mainTitle: 'Mega GIT: files-list',
