@@ -40,9 +40,13 @@ class App {
     const { branch, commit } = req.params;
     const { path, fileHash } = req.query;
     const root = commit || branch;
-    const pathValue = path || './';
-    const breadCrumbs = getBreacrumbs(pathValue);
+    let pathValue = './';
 
+    if (path !== undefined) {
+      pathValue = `${path}/`;
+    }
+
+    const breadCrumbs = getBreacrumbs(pathValue);
     if (fileHash !== undefined) {
       return this.git.getFile(this.path, fileHash)
         .then((fileData) => {
