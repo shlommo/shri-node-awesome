@@ -67,12 +67,12 @@ describe('GIT', () => {
     });
   });
 
-  describe('Методы должны выполниться', () => {
+  describe('При вызове методов с валидными данными, тесты должны проходить', () => {
     shouldPass(() => git.getAllBranches(REPO_PATH)
-      .should.eventually.be.an.instanceOf(Array), 'должен вернуть массив');
+      .should.eventually.be.an.instanceOf(Array), 'должен вернуть массив веток');
 
     shouldPass(() => git.getBranchCommits(REPO_PATH, BRANCH)
-      .should.eventually.be.an.instanceOf(Array), 'должен вернуть массив');
+      .should.eventually.be.an.instanceOf(Array), 'должен вернуть массив коммитов');
 
     shouldPass(() => git.getDirFiles(REPO_PATH, BRANCH, PATH)
       .should.eventually.be.an.instanceOf(Array), 'должен вернуть массив сущностей дирректории');
@@ -81,7 +81,7 @@ describe('GIT', () => {
       .should.eventually.be.a('string'), 'должен вернуть строку');
   });
 
-  describe(('Методы должны валиться'), () => {
+  describe(('При вызове методов с не валидными данными, тесты должны валиться'), () => {
     it('getAllBranches', (done) => {
       git.getAllBranches(13).catch().should.be.rejected.and.notify(done);
     });
