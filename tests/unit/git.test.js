@@ -1,16 +1,17 @@
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
-const git = require('../../src/server/app/git');
+const git = require('./stubs/git-stub');
 const shouldPass = require('./support/should-pass');
-require('dotenv').config();
+const {
+  HASH,
+  BRANCH,
+  REPO_PATH,
+  PATH
+} = require('./support/consts');
 
-const { expect, should } = chai;
+const { expect } = chai;
 chai.should();
 chai.use(chaiAsPromised);
-
-const BRANCH = 'master';
-const REPO_PATH = `./${process.env.REPO}`;
-const HASH = '01b2be2';
 
 describe('GIT', () => {
   describe('parseBranches', () => {
@@ -73,8 +74,8 @@ describe('GIT', () => {
     shouldPass(() => git.getBranchCommits(REPO_PATH, BRANCH)
       .should.eventually.be.an.instanceOf(Array), 'должен вернуть массив');
 
-    shouldPass(() => git.getDirFiles(REPO_PATH, BRANCH)
-      .should.eventually.be.an.instanceOf(Array), 'должен вернуть массив');
+    shouldPass(() => git.getDirFiles(REPO_PATH, BRANCH, PATH)
+      .should.eventually.be.an.instanceOf(Array), 'должен вернуть массив сущностей дирректории');
 
     shouldPass(() => git.getFile(REPO_PATH, HASH)
       .should.eventually.be.a('string'), 'должен вернуть строку');
