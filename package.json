@@ -8,6 +8,7 @@
     "stylelint": "stylelint \"src/client/styles/**/*.scss\"",
     "lint": "npm run eslint && npm run stylelint",
     "clone-repo": "git clone --mirror https://github.com/szhakupbekov/shri-node-awesome.git awesome_project",
+    "selenium:install": "selenium-standalone install",
     "selenium": "selenium-standalone start",
     "hermione": "./node_modules/.bin/hermione",
     "test": "export REPO=awesome_project && nyc mocha tests/unit/*",
